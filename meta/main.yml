@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Taras Kunch
-  description: Install ruby gems to shared bundle dir
+  description: Installs specific ruby version
   company: Rebbix
   min_ansible_version: 1.4
   platforms:
