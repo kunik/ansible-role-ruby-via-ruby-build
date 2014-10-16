@@ -1,9 +1,12 @@
 ---
+- name: get current ruby version
+  command: ruby --version
+  register: ruby_version
+
 - name: install
   sudo: true
-  command: >
-    ruby-build {{ ruby_via_ruby_build.version }} /usr/local
-    creates=/usr/local/bin/ruby
+  command: ruby-build {{ ruby_via_ruby_build.version }} /usr/local
+  when: ruby_version.rc != 0 or ruby_version.stdout.find(ruby_via_ruby_build.version) == -1
 
 - name: disable gem documentation
   sudo: true
