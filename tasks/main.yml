@@ -2,6 +2,7 @@
 - name: get current ruby version
   command: ruby --version
   register: ruby_version
+  ignore_errors: true
 
 - name: install
   sudo: true
