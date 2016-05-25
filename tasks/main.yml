@@ -5,17 +5,17 @@
   ignore_errors: true
 
 - name: install
-  sudo: true
+  become: yes
   command: ruby-build {{ ruby_via_ruby_build.version }} /usr/local
   when: ruby_version.rc != 0 or ruby_version.stdout.find(ruby_via_ruby_build.version) == -1
 
 - name: disable gem documentation
-  sudo: true
+  become: yes
   copy: >
     content='gem: --no-document'
     dest=/usr/local/etc/gemrc
     mode=0644
 
 - name: install bundler
-  sudo: true
+  become: yes
   gem: name=bundler user_install=no state=present
